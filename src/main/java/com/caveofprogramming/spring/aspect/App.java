@@ -1,5 +1,6 @@
 package com.caveofprogramming.spring.aspect;
 
+import com.caveofprogramming.spring.aspect.accessories.Lens;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -10,7 +11,12 @@ public class App {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
         Camera camera = (Camera)context.getBean("camera");
+        Lens lens = (Lens) context.getBean("lens");
+
         camera.snap();
+        camera.snap(1500);
+        camera.snap("Bahrain Castle");
+        lens.zoom(5);
         context.close();
 
     }

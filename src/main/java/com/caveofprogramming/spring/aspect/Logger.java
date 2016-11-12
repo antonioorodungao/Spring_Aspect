@@ -13,8 +13,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class Logger {
 
-    @Pointcut("execution(void com.caveofprogramming.spring.aspect.Camera.snap())")
+    //.. in method as wild card to call overloaded methods
+//    @Pointcut("execution(void com.caveofprogramming.spring.aspect.Camera.snap(..))")
+    @Pointcut("execution(* com.caveofprogramming.spring.aspect.Camera.*(..))")
     public void cameraSnap(){
+
+    }
+
+    @Pointcut("execution(String com.caveofprogramming.spring.aspect.Camera.snap(String))")
+    public void cameraSnapName(){
+
+    }
+
+    //Possible also for the pointcut to have "execution(* *.*(..))"
+    @Pointcut("execution(* com.caveofprogramming.spring.aspect.*.*(..))")
+    public void cameraRelatedAction(){
 
     }
 
@@ -22,4 +35,15 @@ public class Logger {
     public void aboutToTakePhoto(){
         System.out.println("About to take photo.");
     }
+
+    @Before("cameraSnapName()")
+    public void aboutToTakePhotoWithName(){
+        System.out.println("About to take photo with name");
+    }
+
+    @Before("cameraRelatedAction()")
+    public void doingCameraRelatedAction(){
+        System.out.println("Doing camera related action");
+    }
 }
+
