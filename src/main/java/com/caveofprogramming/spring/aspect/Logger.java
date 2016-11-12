@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * Created by anton on 11/12/2016.
  */
 
-@Aspect
+//@Aspect
 @Component
 public class Logger {
 

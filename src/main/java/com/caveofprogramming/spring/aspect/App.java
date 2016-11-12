@@ -13,7 +13,11 @@ public class App {
         Camera camera = (Camera)context.getBean("camera");
         Lens lens = (Lens) context.getBean("lens");
 
-        camera.snap();
+        try {
+            camera.snap();
+        } catch (Exception e) {
+            System.out.println("Caught Exception: " + e.getMessage());
+        }
         camera.snap(1500);
         camera.snap("Bahrain Castle");
         lens.zoom(5);
