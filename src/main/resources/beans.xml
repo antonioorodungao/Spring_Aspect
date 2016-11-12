@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="camera" class="com.caveofprogramming.spring.aspect.Camera">
+    <!--<bean id="camera" class="com.caveofprogramming.spring.aspect.Camera">-->
 
-    </bean>
+    <!--</bean>-->
 
-    <bean id="logger" class="com.caveofprogramming.spring.aspect.Logger">
+    <!--<bean id="logger" class="com.caveofprogramming.spring.aspect.Logger">-->
 
-    </bean>
+    <!--</bean>-->
 
-    <aop:config>
-        <aop:pointcut id="camerasnap" expression="execution(void com.caveofprogramming.spring.aspect.Camera.snap())"/>
-        <aop:aspect id="loggeraspect" ref="logger">
-            <aop:before method="aboutToTakePhoto" pointcut-ref="camerasnap"></aop:before>
-        </aop:aspect>
-    </aop:config>
+    <context:annotation-config>
+    </context:annotation-config>
+    <context:component-scan base-package="com.caveofprogramming.spring.aspect"/>
 
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
+    <!--<aop:config>-->
+        <!--<aop:pointcut id="camerasnap" expression="execution(void com.caveofprogramming.spring.aspect.Camera.snap())"/>-->
+        <!--<aop:aspect id="loggeraspect" ref="logger">-->
+            <!--<aop:before method="aboutToTakePhoto" pointcut-ref="camerasnap"></aop:before>-->
+        <!--</aop:aspect>-->
+    <!--</aop:config>-->
+
+<!--<aop:config>-->
+    <!--<aop:aspect id="loggeraspect" ref="logger">-->
+        <!--<aop:before method="aboutToTakePhoto" pointcut="execution(void com.caveofprogramming.spring.aspect.Camera.snap())"/>-->
+    <!--</aop:aspect>-->
+<!--</aop:config>-->
 </beans>
